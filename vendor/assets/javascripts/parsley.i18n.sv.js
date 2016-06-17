@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('sv', {
+// Define then the messages
+window.ParsleyConfig.i18n.sv = $.extend(window.ParsleyConfig.i18n.sv || {}, {
   defaultMessage: "Ogiltigt värde.",
   type: {
     email:        "Ange en giltig e-postadress.",
@@ -26,4 +28,6 @@ Parsley.addMessages('sv', {
   equalto:        "Värdena måste vara lika."
 });
 
-Parsley.setLocale('sv');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('sv', window.ParsleyConfig.i18n.sv, true);

@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('ja', {
+// Define then the messages
+window.ParsleyConfig.i18n.ja = $.extend(window.ParsleyConfig.i18n.ja || {}, {
   defaultMessage: "無効な値です。",
   type: {
     email:        "正しいメールアドレスを入力してください。",
@@ -26,4 +28,6 @@ Parsley.addMessages('ja', {
   equalto:        "値が違います。"
 });
 
-Parsley.setLocale('ja');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('ja', window.ParsleyConfig.i18n.ja, true);

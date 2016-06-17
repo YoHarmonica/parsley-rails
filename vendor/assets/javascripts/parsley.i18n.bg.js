@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('bg', {
+// Define then the messages
+window.ParsleyConfig.i18n.bg = $.extend(window.ParsleyConfig.i18n.bg || {}, {
   defaultMessage: "Невалидна стойност.",
   type: {
     email:        "Невалиден имейл адрес.",
@@ -26,4 +28,6 @@ Parsley.addMessages('bg', {
   equalto:        "Стойността трябва да съвпада."
 });
 
-Parsley.setLocale('bg');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('bg', window.ParsleyConfig.i18n.bg, true);

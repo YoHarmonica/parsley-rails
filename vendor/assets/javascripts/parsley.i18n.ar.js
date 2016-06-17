@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('ar', {
+// Define then the messages
+window.ParsleyConfig.i18n.ar = $.extend(window.ParsleyConfig.i18n.ar || {}, {
   defaultMessage: "تأكد من صحة القيمة المدخل",
   type: {
     email:        "تأكد من إدخال بريد الكتروني صحيح",
@@ -26,4 +28,6 @@ Parsley.addMessages('ar', {
   equalto:        "تأكد من تطابق القيمتين المدخلة."
 });
 
-Parsley.setLocale('ar');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('ar', window.ParsleyConfig.i18n.ar, true);

@@ -1,8 +1,9 @@
-// This is included with the Parsley library itself,
-// thus there is no use in adding it to your project.
-import Parsley from '../parsley/main';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('en', {
+// Define then the messages
+window.ParsleyConfig.i18n.en = $.extend(window.ParsleyConfig.i18n.en || {}, {
   defaultMessage: "This value seems to be invalid.",
   type: {
     email:        "This value should be a valid email.",
@@ -27,4 +28,6 @@ Parsley.addMessages('en', {
   equalto:        "This value should be the same."
 });
 
-Parsley.setLocale('en');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('en', window.ParsleyConfig.i18n.en, true);

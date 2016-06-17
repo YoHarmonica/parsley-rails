@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('th', {
+// Define then the messages
+window.ParsleyConfig.i18n.th = $.extend(window.ParsleyConfig.i18n.th || {}, {
   defaultMessage: "ค่านี้ดูเหมือนว่าจะไม่ถูกต้อง",
   type: {
     email:        "ค่านี้ควรจะเป็นอีเมลที่ถูกต้อง",
@@ -26,4 +28,6 @@ Parsley.addMessages('th', {
   equalto:        "ค่านี้ควรจะเหมือนกัน"
 });
 
-Parsley.setLocale('th');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('th', window.ParsleyConfig.i18n.th, true);

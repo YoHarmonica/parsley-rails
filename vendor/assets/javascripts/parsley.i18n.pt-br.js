@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('pt-br', {
+// Define then the messages
+window.ParsleyConfig.i18n['pt-br'] = $.extend(window.ParsleyConfig.i18n['pt-br'] || {}, {
   defaultMessage: "Este valor parece ser inválido.",
   type: {
     email:        "Este campo deve ser um email válido.",
@@ -26,4 +28,6 @@ Parsley.addMessages('pt-br', {
   equalto:        "Este valor deveria ser igual."
 });
 
-Parsley.setLocale('pt-br');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('pt-br', window.ParsleyConfig.i18n['pt-br'], true);

@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('de', {
+// Define then the messages
+window.ParsleyConfig.i18n.de = $.extend(window.ParsleyConfig.i18n.de || {}, {
   defaultMessage: "Die Eingabe scheint nicht korrekt zu sein.",
   type: {
     email:        "Die Eingabe muss eine gültige E-Mail-Adresse sein.",
@@ -20,10 +22,9 @@ Parsley.addMessages('de', {
   minlength:      "Die Eingabe ist zu kurz. Es müssen mindestens %s Zeichen eingegeben werden.",
   maxlength:      "Die Eingabe ist zu lang. Es dürfen höchstens %s Zeichen eingegeben werden.",
   length:         "Die Länge der Eingabe ist ungültig. Es müssen zwischen %s und %s Zeichen eingegeben werden.",
-  mincheck:       "Wählen Sie mindestens %s Angaben aus.",
-  maxcheck:       "Wählen Sie maximal %s Angaben aus.",
-  check:          "Wählen Sie zwischen %s und %s Angaben.",
   equalto:        "Dieses Feld muss dem anderen entsprechen."
 });
 
-Parsley.setLocale('de');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('de', window.ParsleyConfig.i18n.de, true);

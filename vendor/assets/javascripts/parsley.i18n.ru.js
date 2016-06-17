@@ -1,7 +1,14 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+//Parsley localization for Russian language
+//Evgeni Makarov
+//github.com/emakarov
 
-Parsley.addMessages('ru', {
+
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
+
+// Define then the messages
+window.ParsleyConfig.i18n.ru = $.extend(window.ParsleyConfig.i18n.ru || {}, {
   defaultMessage: "Некорректное значение.",
   type: {
     email:        "Введите адрес электронной почты.",
@@ -26,4 +33,6 @@ Parsley.addMessages('ru', {
   equalto:        "Это значение должно совпадать."
 });
 
-Parsley.setLocale('ru');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('ru', window.ParsleyConfig.i18n.ru, true);

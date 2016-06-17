@@ -1,7 +1,9 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+// ParsleyConfig definition if not already set
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('id', {
+// Define then the messages
+window.ParsleyConfig.i18n.id = $.extend(window.ParsleyConfig.i18n.id || {}, {
   defaultMessage: "tidak valid",
   type: {
     email:        "email tidak valid",
@@ -26,4 +28,6 @@ Parsley.addMessages('id', {
   equalto:        "harus sama"
 });
 
-Parsley.setLocale('id');
+// If file is loaded after Parsley main file, auto-load locale
+if ('undefined' !== typeof window.ParsleyValidator)
+  window.ParsleyValidator.addCatalog('id', window.ParsleyConfig.i18n.id, true);

@@ -1,7 +1,7 @@
-// Validation errors messages for Parsley
-import Parsley from '../parsley';
+window.ParsleyConfig = window.ParsleyConfig || {};
+window.ParsleyConfig.i18n = window.ParsleyConfig.i18n || {};
 
-Parsley.addMessages('nl', {
+window.ParsleyConfig.i18n.nl = $.extend(window.ParsleyConfig.i18n.nl || {}, {
   dateiso:  "Deze waarde moet een datum in het volgende formaat zijn: (YYYY-MM-DD).",
   minwords: "Deze waarde moet minstens %s woorden bevatten.",
   maxwords: "Deze waarde mag maximaal %s woorden bevatten.",
